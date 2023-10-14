@@ -7,97 +7,82 @@ import * as SQLite from "expo-sqlite";
 import NotesStack from "./components/NotesStack";
 import AddScreen from "./components/AddScreen";
 
-
-
 const Stack = createStackNavigator();
 
 export default function App() {
- return (
-   <NavigationContainer>
-     <Stack.Navigator screenOptions={{ presentation: 'modal' }} >
-
-       <Stack.Screen
-         name="Notes Stack"
-         component={NotesStack}
-    options={{ headerShown: false, headerMode:false }}
-       />
-       <Stack.Screen name="Add Note" component={AddScreen} 
-       options={{ presentation: "modal", headerShown: false }}
-       />
-     </Stack.Navigator>
-   </NavigationContainer>
- );
+  return (
+    <NavigationContainer>
+      <Stack.Navigator screenOptions={{ presentation: "modal" }}>
+        <Stack.Screen
+          name="Notes Stack"
+          component={NotesStack}
+          options={{ headerShown: false, headerMode: false }}
+        />
+        <Stack.Screen
+          name="Add Note"
+          component={AddScreen}
+          options={{ presentation: "modal", headerShown: false }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 const db = SQLite.openDatabase("notes.db");
 
-function NotesScreen({ navigation }) {
-const [notes, setNotes] = useState([
-{ title: "Walk the cat", done: false, id: "0" },
-{ title: "Feed the elephant", done: false, id: "1" }
-]);
+// function NotesScreen({ navigation }) {
+//   const [notes, setNotes] = useState([
+//     { title: "Walk the cat", done: false, id: "0" },
+//     { title: "Feed the elephant", done: false, id: "1" },
+//   ]);
 
-useEffect(() => {
-navigation.setOptions({
-headerRight: () => (
-<Pressable onPress={addNote}>
-<Entypo
-name="new-message"
-size={24}
-color="black"
-style={{ marginRight: 20 }}
-/>
-</Pressable>
-)
-});
-});
+//   useEffect(() => {
+//     navigation.setOptions({
+//       headerRight: () => (
+//         <Pressable onPress={addNote}>
+//           <Entypo
+//             name="new-message"
+//             size={24}
+//             color="black"
+//             style={{ marginRight: 20 }}
+//           />
+//         </Pressable>
+//       ),
+//     });
+//   });
 
-function addNote() {
-navigation.navigate("Add Note");
-}
+//   function addNote() {
+//     navigation.navigate("Add Note");
+//   }
 
-function renderItem({ item }) {
-return (
-<View
-style={{
-padding: 10,
-paddingTop: 20,
-paddingBottom: 20,
-borderBottomColor: "#ccc",
-borderBottomWidth: 1
-}}>
-<Text style={{ textAlign: "left", fontSize: 16 }}>{item.title}</Text>
-</View>
-);
-}
+//   function renderItem({ item }) {
+//     return (
+//       <View
+//         style={{
+//           padding: 10,
+//           paddingTop: 20,
+//           paddingBottom: 20,
+//           borderBottomColor: "#ccc",
+//           borderBottomWidth: 1,
+//         }}
+//       >
+//         <Text style={{ textAlign: "left", fontSize: 16 }}>{item.title}</Text>
+//       </View>
+//     );
+//   }
 
-return (
-<View style={styles.container}>
-<FlatList
-style={{ width: "100%" }}
-data={notes}
-renderItem={renderItem}
-/>
-</View>
-);
-}
+//   return (
+//     <View style={styles.container}>
+//       <FlatList
+//         style={{ width: "100%" }}
+//         data={notes}
+//         renderItem={renderItem}
+//       />
+//     </View>
+//   );
+// }
 
-const InnerStack = createStackNavigator();
+// const InnerStack = createStackNavigator();
 
 // function NotesStack() {
 // return (
@@ -121,7 +106,7 @@ const InnerStack = createStackNavigator();
 // />
 // </InnerStack.Navigator>
 // );
-// } 
+// }
 
 // function AddScreen({ navigation }) {
 // return (
@@ -133,8 +118,6 @@ const InnerStack = createStackNavigator();
 // </View>
 // );
 // }
-
-
 
 // export default function App() {
 // return (
@@ -153,10 +136,10 @@ const InnerStack = createStackNavigator();
 // }
 
 const styles = StyleSheet.create({
-container: {
-flex: 1,
-backgroundColor: "#ffc",
-alignItems: "center",
-justifyContent: "center"
-}
+  container: {
+    flex: 1,
+    backgroundColor: "#ffc",
+    alignItems: "center",
+    justifyContent: "center",
+  },
 });
